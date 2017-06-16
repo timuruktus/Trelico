@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Trelico</string>
+
+    // MENU
+    <string name="title_map">Карта</string>
+    <string name="title_settings">Настройки</string>
+
+    //PERMISSIONS
+    <string name="please_give_permission">Пожалуйста, предоставьте приложению доступ к геоданным</string>
+</resources>
