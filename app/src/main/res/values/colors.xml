@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--COLOR APP PALETTE-->
+    <color name="colorPrimary">#01BAEF</color>
+    <color name="colorPrimaryDark">#0B4F6C</color>
+    <color name="colorAccent">#B80C09</color>
+    <color name="colorBright">#FBFBFF</color>
+    <color name="colorDark">#040F16</color>
+    <!--SECOND COLOR PALETTE-->
+    <color name="color11">#7180AC</color>
+    <color name="color12">#2B4570</color>
+    <color name="color13">#A8D0DB</color>
+    <color name="color14">#E49273</color>
+    <color name="color15">#A37A74</color>
+    <!--THIRD COLOR PALETTE-->
+    <color name="color21">#8E9B90</color>
+    <color name="color22">#93c0a4</color>
+    <color name="color23">#B6C4A2</color>
+    <color name="color24">#D4CDAB</color>
+    <color name="color25">#DCE2BD</color>
 </resources>

@@ -6,5 +6,7 @@
     <string name="title_settings">Настройки</string>
 
     //PERMISSIONS
-    <string name="please_give_permission">Пожалуйста, предоставьте приложению доступ к геоданным</string>
+    <string name="denied_permission">Пожалуйста, предоставьте разрешение на геолокацию!
+        В ином случае программа будет работать неправильно.
+    Разрешения можно изменить в настройках</string>
 </resources>
