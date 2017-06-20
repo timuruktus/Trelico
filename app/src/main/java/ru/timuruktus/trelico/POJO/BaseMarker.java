@@ -3,7 +3,7 @@ package ru.timuruktus.trelico.POJO;
 import com.google.android.gms.maps.model.LatLng;
 import com.orm.SugarRecord;
 
-public class BaseMarker extends SugarRecord {
+public class BaseMarker extends SugarRecord{
 
     private String title, snippet;
     private LatLng coordinates;
@@ -14,10 +14,15 @@ public class BaseMarker extends SugarRecord {
         this.snippet = snippet;
         this.lat = lat;
         this.lng = lng;
-        this.coordinates = new LatLng(lat, lng);
+//        this.coordinates = new LatLng(lat, lng);
     }
 
     public BaseMarker() {
+    }
+
+    public LatLng calculateCoordinates(){
+        this.coordinates = new LatLng(lat, lng);
+        return this.coordinates;
     }
 
 

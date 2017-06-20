@@ -1,12 +1,21 @@
 <resources>
     <string name="app_name">Trelico</string>
 
-    // MENU
+    <!--MENU-->
     <string name="title_map">Карта</string>
     <string name="title_settings">Настройки</string>
 
-    //PERMISSIONS
+    <!--PERMISSIONS-->
     <string name="denied_permission">Пожалуйста, предоставьте разрешение на геолокацию!
         В ином случае программа будет работать неправильно.
     Разрешения можно изменить в настройках</string>
+
+
+    <!--ERRORS-->
+    <string name="need_internet_to_download">Для скачивания скидок, необходимо подключение к интернету!</string>
+
+    <!--MARKERS-->
+    <string name="start_markers_download">Пожалуйста, подождите. Идёт скачивание скидок</string>
+
+
 </resources>

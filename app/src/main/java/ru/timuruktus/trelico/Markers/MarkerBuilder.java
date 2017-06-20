@@ -2,6 +2,7 @@ package ru.timuruktus.trelico.Markers;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import ru.timuruktus.trelico.POJO.BaseMarker;
@@ -21,15 +22,17 @@ public class MarkerBuilder {
         return new MarkerOptions().position(coordinates).title(title).snippet(snippet);
     }
 
+
     public void showMarker(GoogleMap map){
         map.addMarker(getMarker());
     }
 
-    public static void showMarker(GoogleMap map, BaseMarker marker){
+    public static Marker showMarker(GoogleMap map, BaseMarker marker){
+        marker.calculateCoordinates();
         LatLng coordinates = marker.getCoordinates();
         String title = marker.getTitle();
         String snippet = marker.getSnippet();
-        map.addMarker(new MarkerOptions().position(coordinates).title(title).snippet(snippet));
+        return map.addMarker(new MarkerOptions().position(coordinates).title(title).snippet(snippet));
     }
 
 }

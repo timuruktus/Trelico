@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,12 @@ import ru.timuruktus.trelico.R;
 public class MapFragment extends Fragment implements BaseMapView {
 
 
-    private View rootView;
+//    private View rootView;
     private BaseMainPresenter mainPresenter;
     private BaseMapPresenter mapPresenter;
     private MapView mapView;
     private Context context;
+    private FloatingActionButton settingsFAB, refreshFAB;
 
     public static MapFragment newInstance(BaseMainPresenter mainPresenter){
         MapFragment fragment = new MapFragment();
@@ -37,7 +39,7 @@ public class MapFragment extends Fragment implements BaseMapView {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView =
+        View rootView =
                 inflater.inflate(R.layout.map_fragment, container, false);
         context = rootView.getContext();
 
@@ -47,13 +49,11 @@ public class MapFragment extends Fragment implements BaseMapView {
         mapView = (MapView) rootView.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.onResume(); // needed to get the map to display immediately
+        MapsInitializer.initialize(getActivity().getApplicationContext());
 
+        refreshFAB = (FloatingActionButton) rootView.findViewById(R.id.refreshFAB);
+        refreshFAB.setOnClickListener(v -> mapPresenter.onRefreshFABClick());
 
-        try {
-            MapsInitializer.initialize(getActivity().getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         mapView.getMapAsync(mapPresenter.onMapReady());
 

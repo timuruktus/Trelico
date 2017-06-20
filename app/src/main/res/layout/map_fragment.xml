@@ -5,16 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="20dp"
-        android:clickable="true"
-        mapbox:fabSize="mini"
-        mapbox:srcCompat="@drawable/ic_settings" />
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/refreshFAB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            mapbox:fabSize="mini"
+            mapbox:srcCompat="@drawable/ic_refresh" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/settingsFAB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerVertical="false"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            mapbox:fabSize="mini"
+            mapbox:srcCompat="@drawable/ic_settings" />
+    </LinearLayout>
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
