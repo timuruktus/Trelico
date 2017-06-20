@@ -3,6 +3,7 @@ package ru.timuruktus.trelico.MainPart.Interfaces;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.view.View;
 
 import com.google.android.gms.maps.SupportMapFragment;
 
@@ -32,4 +33,5 @@ public interface BaseMainPresenter extends Serializable {
     void clearBackStack();
 
     Activity getMainActivity();
+    View getContainer();
 }

@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 
 import com.backendless.Backendless;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -90,6 +91,11 @@ class MainPresenter implements BaseMainPresenter {
     @Override
     public Activity getMainActivity() {
         return activity.getActivity();
+    }
+
+    @Override
+    public View getContainer() {
+        return activity.getActivity().findViewById(R.id.container);
     }
 
 

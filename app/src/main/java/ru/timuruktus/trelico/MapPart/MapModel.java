@@ -4,7 +4,9 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 
@@ -26,7 +28,7 @@ import static android.location.LocationProvider.AVAILABLE;
 class MapModel implements BaseMapModel {
 
 
-
+    public static final int SNACKBAR_DURATION = 10000;
     private BaseMapPresenter presenter;
 
     MapModel(BaseMapPresenter presenter) {
@@ -50,7 +52,7 @@ class MapModel implements BaseMapModel {
 
             @Override
             public void onError(BackendlessFault fault) {
-                Log.d("mytag", "DOwnload erorr. More info: " + fault.toString() +
+                Log.d("mytag", "Download error. More info: " + fault.toString() +
                         " Details: " + fault.getDetail() +
                 " Message: " + fault.getMessage() + " Code: " + fault.getCode());
                 Toast.makeText(context, R.string.need_internet_to_download, Toast.LENGTH_SHORT).show();
@@ -58,15 +60,44 @@ class MapModel implements BaseMapModel {
 
             @Override
             public void unsubscribe() {
-
+                setSubscribed(false);
             }
         };
     }
 
+    public DownloadListener getMarkersRefreshListener(View view){
+        Context context = presenter.askForContext();
+        return new DownloadListener() {
+            @Override
+            public void onStart() {
+                Snackbar snackbar = Snackbar.make(view
+                        ,R.string.refreshing_markers,
+                        Snackbar.LENGTH_LONG);
+                snackbar.setDuration(SNACKBAR_DURATION);
+                snackbar.show();
+            }
 
-    public void buildLocationManager(){
+            @Override
+            public void onComplete() {
+                presenter.updateMap();
+                presenter.animateCameraToUser();
+            }
 
+            @Override
+            public void onError(BackendlessFault fault) {
+                Log.d("mytag", "Download error. More info: " + fault.toString() +
+                        " Details: " + fault.getDetail() +
+                        " Message: " + fault.getMessage() + " Code: " + fault.getCode());
+                Toast.makeText(context, R.string.need_internet_to_refresh, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void unsubscribe() {
+                setSubscribed(false);
+            }
+        };
     }
+
 
     public List<BaseMarker> getAllMarkers(){
         return BaseMarker.listAll(BaseMarker.class);

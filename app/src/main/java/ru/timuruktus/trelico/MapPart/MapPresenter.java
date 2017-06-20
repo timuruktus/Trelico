@@ -32,6 +32,7 @@ import ru.timuruktus.trelico.Markers.CustomInfoWindowAdapter;
 import ru.timuruktus.trelico.Markers.MarkerBuilder;
 import ru.timuruktus.trelico.Markers.MarkerModel;
 import ru.timuruktus.trelico.POJO.BaseMarker;
+import ru.timuruktus.trelico.R;
 
 import static android.support.v4.content.PermissionChecker.PERMISSION_GRANTED;
 import static ru.timuruktus.trelico.MainPart.MainActivity.MY_PERMISSIONS_REQUEST_FINE_LOCATION;
@@ -50,6 +51,7 @@ class MapPresenter implements BaseMapPresenter {
     private BaseMainPresenter mainPresenter;
     private ArrayList<Marker> showedMarkers = new ArrayList<>();
     public static final int UPDATE_MAP_DELAY = 3000;
+
 
     MapPresenter(BaseMapView view) {
         this.view = view;
@@ -105,10 +107,8 @@ class MapPresenter implements BaseMapPresenter {
     @Override
     public void onRefreshFABClick() {
         MarkerModel markerModel = new MarkerModel();
-        markerModel.refreshAllMarkers();
-        clearAllShowedMarkers();
-        mainPresenter.changeFragment(new MapFragment(), false);
-        Snackbar
+        markerModel.refreshAllMarkers(model.getMarkersRefreshListener(mainPresenter.getContainer()));
+//        mainPresenter.changeFragment(new MapFragment(), false);
     }
 
     @Override
@@ -118,12 +118,11 @@ class MapPresenter implements BaseMapPresenter {
 
     private void prepareMap(){
 //        Log.d("mytag", "prepareMap()");
+        MarkerModel markerModel = new MarkerModel();
         if(!model.isMarkersDownloaded()){
-            MarkerModel markerModel = new MarkerModel();
             markerModel.downloadAllMarkers(model.getMarkersDownloadListener());
         }else{
-            updateMap();
-            animateCameraToUser();
+            markerModel.refreshAllMarkers(model.getMarkersRefreshListener(mainPresenter.getContainer()));
         }
 
     }

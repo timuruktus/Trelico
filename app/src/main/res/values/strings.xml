@@ -13,9 +13,12 @@
 
     <!--ERRORS-->
     <string name="need_internet_to_download">Для скачивания скидок, необходимо подключение к интернету!</string>
+    <string name="need_internet_to_refresh">Для обновления информации по скидкам, необходимо подключение к интернету!</string>
 
     <!--MARKERS-->
     <string name="start_markers_download">Пожалуйста, подождите. Идёт скачивание скидок</string>
 
+    <!--SNACKBARS-->
+    <string name="refreshing_markers">Обновляем скидки..</string>
 
 </resources>
