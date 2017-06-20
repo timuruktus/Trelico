@@ -19,6 +19,7 @@ import ru.timuruktus.trelico.MapPart.Interafaces.BaseMapPresenter;
 import ru.timuruktus.trelico.MapPart.Interafaces.CustomLocationListener;
 import ru.timuruktus.trelico.Markers.DownloadListener;
 import ru.timuruktus.trelico.POJO.BaseMarker;
+import ru.timuruktus.trelico.POJO.CustomGeoPoint;
 import ru.timuruktus.trelico.R;
 
 import static android.location.LocationProvider.AVAILABLE;
@@ -68,38 +69,16 @@ class MapModel implements BaseMapModel {
 
     }
 
-    public List<BaseMarker> getAllMarkers(){
-        return BaseMarker.listAll(BaseMarker.class);
+    public List<CustomGeoPoint> getAllMarkers(){
+        return CustomGeoPoint.listAll(CustomGeoPoint.class);
     }
 
-    public List<BaseMarker> getAllMarkerInRadius(BaseLocationTracker locationTracker) throws NullPointerException{
+    public List<CustomGeoPoint> getAllMarkerInRadius(BaseLocationTracker locationTracker) throws NullPointerException{
         double currentLat = locationTracker.getLastLocation().getLatitude();
         double currentLng = locationTracker.getLastLocation().getLongitude();
         return getAllMarkerInRadius(currentLat, currentLng);
     }
 
-    public List<BaseMarker> getAllMarkerInRadius(double currentLat, double currentLng) throws NullPointerException{
-        float[] results = new float[1];
-        ArrayList<BaseMarker> finalMarkers = new ArrayList<>();
-        List<BaseMarker> tempMarkers = BaseMarker.
-                findWithQuery(BaseMarker.class,
-                        "Select * from base_marker where lat between ? and ? and lng between ? and ?",
-                        currentLat - 10 + "" , currentLat + 10 + "", currentLng - 10 + "", currentLng + 10 + "" );
-
-        for(BaseMarker marker : tempMarkers){
-            double lat = marker.getLat();
-            double lng = marker.getLng();
-            Location.distanceBetween(lat, lng, currentLat, currentLng, results);
-            if(results[0] < 2000){
-                finalMarkers.add(marker);
-            }
-        }
-
-        for(BaseMarker marker : finalMarkers){
-        }
-
-        return finalMarkers;
-    }
 
     public boolean isMarkersDownloaded(){
         return getAllMarkers().size() != 0;

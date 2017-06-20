@@ -31,7 +31,6 @@ import ru.timuruktus.trelico.MapPart.Interafaces.CustomLocationListener;
 import ru.timuruktus.trelico.Markers.CustomInfoWindowAdapter;
 import ru.timuruktus.trelico.Markers.MarkerBuilder;
 import ru.timuruktus.trelico.Markers.MarkerModel;
-import ru.timuruktus.trelico.POJO.BaseMarker;
 
 import static android.support.v4.content.PermissionChecker.PERMISSION_GRANTED;
 import static ru.timuruktus.trelico.MainPart.MainActivity.MY_PERMISSIONS_REQUEST_FINE_LOCATION;
@@ -104,11 +103,11 @@ class MapPresenter implements BaseMapPresenter {
 
     @Override
     public void onRefreshFABClick() {
-        MarkerModel markerModel = new MarkerModel();
-        markerModel.refreshAllMarkers();
-        clearAllShowedMarkers();
-        mainPresenter.changeFragment(new MapFragment(), false);
-        Snackbar
+//        MarkerModel markerModel = new MarkerModel();
+//        markerModel.refreshAllMarkers();
+//        clearAllShowedMarkers();
+//        mainPresenter.changeFragment(new MapFragment(), false);
+//        Snackbar
     }
 
     @Override

@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.timuruktus.trelico.POJO.BaseMarker;
+import ru.timuruktus.trelico.POJO.CustomGeoPoint;
 
 public class MarkerModel implements BaseMarkerModel {
 
     private int offset = 0;
-    private ArrayList<BaseMarker> finalMarkers = null;
+    private ArrayList<CustomGeoPoint> finalMarkers = null;
     private boolean firstCall = true;
 
 
@@ -26,25 +27,23 @@ public class MarkerModel implements BaseMarkerModel {
         DataQueryBuilder queryBuilder = DataQueryBuilder.create();
         queryBuilder.setPageSize(100);
         queryBuilder.setOffset(offset);
-        Backendless.Persistence.of(BaseMarker.class).find(queryBuilder, getDownloadListener(listener));
+        Backendless.Persistence.of(CustomGeoPoint.class).find(queryBuilder, getDownloadListener(listener));
         listener.onStart();
     }
 
-    private AsyncCallback<List<BaseMarker>> getDownloadListener(DownloadListener listener){
-        return new AsyncCallback<List<BaseMarker>>(){
+    private AsyncCallback<List<CustomGeoPoint>> getDownloadListener(DownloadListener listener){
+        return new AsyncCallback<List<CustomGeoPoint>>(){
             @Override
-            public void handleResponse(List<BaseMarker> foundMarkers) {
-//                        if(foundMarkers == null) Log.d("mytag", "Found tasks is null");
+            public void handleResponse(List<CustomGeoPoint> foundMarkers) {
                 int size = foundMarkers.size();
-//                        Log.d("mytag", "Found tasks size = " + size);
-                ArrayList<BaseMarker> tasks = (ArrayList<BaseMarker>) foundMarkers;
+                ArrayList<CustomGeoPoint> tasks = (ArrayList<CustomGeoPoint>) foundMarkers;
                 if(size > 0){
                     offset += tasks.size();
                     finalMarkers.addAll(tasks);
                     downloadAllMarkers(listener);
                 }else{
                     offset = 0;
-                    for(BaseMarker marker : finalMarkers){
+                    for(CustomGeoPoint marker : finalMarkers){
                         marker.save();
                     }
                     listener.onComplete();
@@ -58,22 +57,20 @@ public class MarkerModel implements BaseMarkerModel {
         };
     }
 
-    private AsyncCallback<List<BaseMarker>> getRefreshListener(DownloadListener listener){
-        return new AsyncCallback<List<BaseMarker>>(){
+    private AsyncCallback<List<CustomGeoPoint>> getRefreshListener(DownloadListener listener){
+        return new AsyncCallback<List<CustomGeoPoint>>(){
             @Override
-            public void handleResponse(List<BaseMarker> foundMarkers) {
-//                        if(foundMarkers == null) Log.d("mytag", "Found tasks is null");
+            public void handleResponse(List<CustomGeoPoint> foundMarkers) {
                 int size = foundMarkers.size();
-//                        Log.d("mytag", "Found tasks size = " + size);
-                ArrayList<BaseMarker> tasks = (ArrayList<BaseMarker>) foundMarkers;
+                ArrayList<CustomGeoPoint> tasks = (ArrayList<CustomGeoPoint>) foundMarkers;
                 if(size > 0){
                     offset += tasks.size();
                     finalMarkers.addAll(tasks);
                     downloadAllMarkers(listener);
                 }else{
                     offset = 0;
-                    BaseMarker.deleteAll(BaseMarker.class);
-                    for(BaseMarker marker : finalMarkers){
+                    CustomGeoPoint.deleteAll(CustomGeoPoint.class);
+                    for(CustomGeoPoint marker : finalMarkers){
                         marker.save();
                     }
                     listener.onComplete();
@@ -96,7 +93,7 @@ public class MarkerModel implements BaseMarkerModel {
         DataQueryBuilder queryBuilder = DataQueryBuilder.create();
         queryBuilder.setPageSize(100);
         queryBuilder.setOffset(offset);
-        Backendless.Persistence.of(BaseMarker.class).find(queryBuilder, getRefreshListener(listener));
+        Backendless.Persistence.of(CustomGeoPoint.class).find(queryBuilder, getRefreshListener(listener));
         listener.onStart();
     }
 
