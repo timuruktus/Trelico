@@ -17,8 +17,10 @@
 
 
     <!--ERRORS-->
-    <string name="need_internet_to_download">Для скачивания скидок, необходимо подключение к интернету!</string>
-    <string name="need_internet_to_refresh">Для обновления информации по скидкам, необходимо подключение к интернету!</string>
+    <string name="need_internet_to_download">Для скачивания скидок, необходимо
+        подключение к интернету!</string>
+    <string name="need_internet_to_refresh">Для обновления информации по скидкам,
+        необходимо подключение к интернету!</string>
 
     <!--MARKERS-->
     <string name="start_markers_download">Пожалуйста, подождите. Идёт скачивание скидок</string>
@@ -29,9 +31,8 @@
     <!--SETTINGS-->
     <string name="please_turn_gps">Включите геолокацию</string>
     <string name="gps_explanation">Для корректной работы нашего приложения, необходимо чтобы
-        Вы разрешили использование геоданных.
-    \n
-        \nДоступ к ним осуществляется за счет подключения к интернету, или через спутники GPS</string>
+        Вы разрешили использование геоданных.\n\nДоступ к ним осуществляется за счет подключения к
+        интернету, или через спутники GPS</string>
     <string name="turn_on_gps">Разрешить геолокацию</string>
     <string name="orange_round">Оранжевый круг</string>
     <string name="blue_round">Синий круг</string>
@@ -41,8 +42,11 @@
         Скидки показываются только внутри этого круга</string>
     <string name="settings_about_sales">При несвоевременном обновлении базы данных,
         текущие скидки, показываемые здесь, могут быть недействительны</string>
-    <string name="settings_footer_info">По всем вопросам обращайтесь по адресу help@trelico.com</string>
+    <string name="settings_footer_info">По всем вопросам обращайтесь по адресу
+        help@trelico.com</string>
     <string name="user_denied_gps">Если ничего не происходит- переустановите приложение
         и при запуске разрешите сбор геоданных снова</string>
+    <string name="how_to_use_title">Как использовать?</string>
+    <string name="how_to_use_desc">Просто при покупке покажите кассиру, что пришли через наше приложение. \n\nМожете показать карту с меткой данного магазина. \n\nВам будет выдана фиксированная скидка на покупку</string>
 
 </resources>
