@@ -7,6 +7,7 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -31,6 +32,7 @@ import ru.timuruktus.trelico.Markers.CustomInfoWindowAdapter;
 import ru.timuruktus.trelico.Markers.MarkerBuilder;
 import ru.timuruktus.trelico.Markers.MarkerModel;
 import ru.timuruktus.trelico.POJO.BaseMarker;
+import ru.timuruktus.trelico.R;
 import ru.timuruktus.trelico.SettingsPart.SettingsFragment;
 
 import static android.support.v4.content.PermissionChecker.PERMISSION_GRANTED;

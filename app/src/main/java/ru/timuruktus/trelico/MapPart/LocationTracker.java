@@ -27,7 +27,7 @@ public class LocationTracker implements BaseLocationTracker{
     private Circle circle;
     private MapPresenter mapPresenter;
 
-    public static final int TIMER_DELAY = 10000; // in Milliseconds
+    public static final int TIMER_DELAY = 1000; // in Milliseconds
     public static final int NO_DELAY = 0;
     public static final int CIRCLE_SEARCH_RADIUS = 1000;
     public static final int FILL_COLOR = 0x44E49273;

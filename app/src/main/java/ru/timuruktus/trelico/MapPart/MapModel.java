@@ -29,7 +29,7 @@ import static ru.timuruktus.trelico.MapPart.LocationTracker.CIRCLE_SEARCH_RADIUS
 class MapModel implements BaseMapModel {
 
 
-    public static final int SNACKBAR_DURATION = 10000;
+    public static final int SNACKBAR_DURATION = 3000;
     private BaseMapPresenter presenter;
 
     MapModel(BaseMapPresenter presenter) {
@@ -73,7 +73,7 @@ class MapModel implements BaseMapModel {
             public void onStart() {
                 Snackbar snackbar = Snackbar.make(view
                         ,R.string.refreshing_markers,
-                        Snackbar.LENGTH_LONG);
+                        Snackbar.LENGTH_SHORT);
                 snackbar.setDuration(SNACKBAR_DURATION);
                 snackbar.show();
             }
