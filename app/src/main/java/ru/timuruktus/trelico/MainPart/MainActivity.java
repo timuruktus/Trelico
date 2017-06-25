@@ -3,6 +3,7 @@ package ru.timuruktus.trelico.MainPart;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements BaseMainActivity,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         presenter = new MainPresenter(this);
         presenter.onCreate();

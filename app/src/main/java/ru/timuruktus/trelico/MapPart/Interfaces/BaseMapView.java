@@ -1,4 +1,4 @@
-package ru.timuruktus.trelico.MapPart.Interafaces;
+package ru.timuruktus.trelico.MapPart.Interfaces;
 
 import android.app.Activity;
 import android.content.Context;

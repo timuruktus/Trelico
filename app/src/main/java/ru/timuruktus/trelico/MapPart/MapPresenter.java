@@ -7,7 +7,6 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Handler;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -23,16 +22,16 @@ import com.google.android.gms.maps.model.Marker;
 import java.util.ArrayList;
 
 import ru.timuruktus.trelico.MainPart.Interfaces.BaseMainPresenter;
-import ru.timuruktus.trelico.MapPart.Interafaces.BaseLocationTracker;
-import ru.timuruktus.trelico.MapPart.Interafaces.BaseMapModel;
-import ru.timuruktus.trelico.MapPart.Interafaces.BaseMapPresenter;
-import ru.timuruktus.trelico.MapPart.Interafaces.BaseMapView;
-import ru.timuruktus.trelico.MapPart.Interafaces.CustomLocationListener;
+import ru.timuruktus.trelico.MapPart.Interfaces.BaseLocationTracker;
+import ru.timuruktus.trelico.MapPart.Interfaces.BaseMapModel;
+import ru.timuruktus.trelico.MapPart.Interfaces.BaseMapPresenter;
+import ru.timuruktus.trelico.MapPart.Interfaces.BaseMapView;
+import ru.timuruktus.trelico.MapPart.Interfaces.CustomLocationListener;
 import ru.timuruktus.trelico.Markers.CustomInfoWindowAdapter;
 import ru.timuruktus.trelico.Markers.MarkerBuilder;
 import ru.timuruktus.trelico.Markers.MarkerModel;
 import ru.timuruktus.trelico.POJO.BaseMarker;
-import ru.timuruktus.trelico.R;
+import ru.timuruktus.trelico.SettingsPart.SettingsFragment;
 
 import static android.support.v4.content.PermissionChecker.PERMISSION_GRANTED;
 import static ru.timuruktus.trelico.MainPart.MainActivity.MY_PERMISSIONS_REQUEST_FINE_LOCATION;
@@ -65,7 +64,7 @@ class MapPresenter implements BaseMapPresenter {
         FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(view.getAppContext());
         locationManager = (LocationManager) view.getAppContext().getSystemService(Context.LOCATION_SERVICE);
         locationListener = model.getLocationListener();
-        locationTracker = new LocationTracker(fusedLocationClient);
+        locationTracker = new LocationTracker(fusedLocationClient, this);
     }
 
 
@@ -84,7 +83,7 @@ class MapPresenter implements BaseMapPresenter {
                     Manifest.permission.ACCESS_FINE_LOCATION);
             if(permissionCheck == PERMISSION_GRANTED) {
                 googleMap.setMyLocationEnabled(true);
-                locationTracker.start();
+                locationTracker.start(googleMap);
                 prepareMap();
             }else{
                 ActivityCompat.requestPermissions(view.getActivity(),
@@ -113,7 +112,7 @@ class MapPresenter implements BaseMapPresenter {
 
     @Override
     public void onSettingsFABClick() {
-
+        mainPresenter.changeFragment(SettingsFragment.newInstance(mainPresenter), false);
     }
 
     private void prepareMap(){
@@ -145,14 +144,19 @@ class MapPresenter implements BaseMapPresenter {
     }
 
     @Override
+    public void refreshMarkers() throws NullPointerException {
+        ArrayList<BaseMarker> markers = (ArrayList<BaseMarker>) model.getAllMarkerInRadius(locationTracker);
+        clearAllShowedMarkers();
+        for(BaseMarker marker : markers){
+            Marker showedMarker = MarkerBuilder.showMarker(googleMap, marker);
+            showedMarkers.add(showedMarker);
+        }
+    }
+
+    @Override
     public void updateMap(){
         try {
-            ArrayList<BaseMarker> markers = (ArrayList<BaseMarker>) model.getAllMarkerInRadius(locationTracker);
-            clearAllShowedMarkers();
-            for(BaseMarker marker : markers){
-                Marker showedMarker = MarkerBuilder.showMarker(googleMap, marker);
-                showedMarkers.add(showedMarker);
-            }
+            refreshMarkers();
             animateCameraToUser();
         }catch(NullPointerException ex){
             Handler handler = new Handler();

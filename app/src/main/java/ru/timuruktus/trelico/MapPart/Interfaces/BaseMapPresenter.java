@@ -1,4 +1,4 @@
-package ru.timuruktus.trelico.MapPart.Interafaces;
+package ru.timuruktus.trelico.MapPart.Interfaces;
 
 import android.content.Context;
 
@@ -18,4 +18,5 @@ public interface BaseMapPresenter {
     void updateMap();
     Context askForContext();
     void animateCameraToUser();
+    void refreshMarkers();
 }

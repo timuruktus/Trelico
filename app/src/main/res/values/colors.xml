@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--COLOR APP PALETTE-->
-    <color name="colorPrimary">#01BAEF</color>
-    <color name="colorPrimaryDark">#0B4F6C</color>
-    <color name="colorAccent">#B80C09</color>
-    <color name="colorBright">#FBFBFF</color>
-    <color name="colorDark">#040F16</color>
-    <!--SECOND COLOR PALETTE-->
-    <color name="color11">#7180AC</color>
-    <color name="color12">#2B4570</color>
-    <color name="color13">#A8D0DB</color>
-    <color name="color14">#E49273</color>
-    <color name="color15">#A37A74</color>
-    <!--THIRD COLOR PALETTE-->
-    <color name="color21">#8E9B90</color>
-    <color name="color22">#93c0a4</color>
-    <color name="color23">#B6C4A2</color>
-    <color name="color24">#D4CDAB</color>
-    <color name="color25">#DCE2BD</color>
+    <color name="colorPrimary">#dfe3e6</color>
+    <color name="colorPrimaryDark">#0d404e</color>
+    <color name="colorAccent">#FF5A3C</color>
+    <color name="colorAccent2">#00DA9D</color>
+    <color name="colorBright">#f5f7f6</color>
+    <color name="colorDark">#7f9298</color>
+    <color name="colorText">#333333</color>
+
+    <color name="blueRoundTint">#554084d7</color>
+    <color name="blueRoundStroke">#4084d7</color>
+    <color name="orangeRoundTint">#44E49273</color>
+
+    <color name="сolorSettingsFooter">#082730</color>
+    <!--&lt;!&ndash;SECOND COLOR PALETTE&ndash;&gt;-->
+    <!--<color name="color11">#7180ac</color>-->
+    <!--<color name="color12">#2b4570</color>-->
+    <!--<color name="color13">#a8d0db</color>-->
+    <!--<color name="color14">#E49273</color>-->
+    <!--<color name="color15">#a37a74</color>-->
+    <!--&lt;!&ndash;THIRD COLOR PALETTE&ndash;&gt;-->
+    <!--<color name="color21">#8E9B90</color>-->
+    <!--<color name="color22">#93c0a4</color>-->
+    <!--<color name="color23">#B6C4A2</color>-->
+    <!--<color name="color24">#D4CDAB</color>-->
+    <!--<color name="color25">#DCE2BD</color>-->
 </resources>

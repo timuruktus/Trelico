@@ -1,6 +1,267 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
 
-</LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/settingsHeader"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/colorPrimaryDark">
+
+                <Button
+                    android:id="@+id/rateBtn"
+                    fontPath="fonts/Roboto-Thin.ttf"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/settingsTitle"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_accent_2_outer_background"
+                    android:text="@string/rate"
+                    android:textColor="@color/colorBright" />
+
+                <Button
+                    android:id="@+id/backBtn"
+                    fontPath="fonts/Roboto-Thin.ttf"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/settingsTitle"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_accent_outer_background"
+                    android:text="@string/back"
+                    android:textColor="@color/colorBright" />
+
+                <TextView
+                    android:id="@+id/settingsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="false"
+                    android:layout_margin="20dp"
+                    android:text="@string/settings"
+                    android:textColor="@color/colorBright"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/settingsGPSPart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/turnGPS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="@string/please_turn_gps"
+                    android:textColor="@color/colorText"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/turnGPSExplanation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/gps_explanation"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/gpsBtn"
+                    fontPath="fonts/Roboto-Thin.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_accent_background"
+                    android:text="@string/turn_on_gps"
+                    android:textColor="@color/colorBright" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/settingsDivider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="15dp"
+                android:alpha="0.2"
+                android:background="@color/colorPrimaryDark">
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/settingsRoundsPart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/blueRoundPart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/blueRoundTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/blueRound"
+                        android:layout_toRightOf="@+id/blueRound"
+                        android:text="@string/blue_round"
+                        android:textColor="@color/colorText"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/blueRoundDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/blueRoundTitle"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/blueRound"
+                        android:text="@string/blue_round_desc" />
+
+                    <ImageView
+                        android:id="@+id/blueRound"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        app:srcCompat="@drawable/blue_round" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/orangeRoundPart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/orangeRoundTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/orangeRound"
+                        android:layout_toRightOf="@+id/orangeRound"
+                        android:text="@string/orange_round"
+                        android:textColor="@color/colorText"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/orangeRoundDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/orangeRoundTitle"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/orangeRound"
+                        android:text="@string/orange_round_desc" />
+
+                    <ImageView
+                        android:id="@+id/orangeRound"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        app:srcCompat="@drawable/orange_round" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/settingsDivider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="15dp"
+                android:alpha="0.2"
+                android:background="@color/colorPrimaryDark">
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/settingsAboutSalesPart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/settingsAttention"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/attention"
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/settings_about_sales" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/settingsDivider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="15dp"
+                android:alpha="0.2"
+                android:background="@color/colorPrimaryDark">
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/settingsFooter"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/сolorSettingsFooter">
+
+                <TextView
+                    android:id="@+id/footerAppName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/app_name"
+                    android:textColor="@color/colorBright"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/footerInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/footerAppName"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/settings_footer_info"
+                    android:textColor="@color/colorBright"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</RelativeLayout>

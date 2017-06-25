@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">Trelico</string>
 
+    <!--WORDS-->
+    <string name="settings">Настройки</string>
+    <string name="back">Назад</string>
+    <string name="rate">Оценить</string>
+    <string name="attention">Внимание!</string>
+
     <!--MENU-->
     <string name="title_map">Карта</string>
-    <string name="title_settings">Настройки</string>
 
     <!--PERMISSIONS-->
     <string name="denied_permission">Пожалуйста, предоставьте разрешение на геолокацию!
@@ -20,5 +25,24 @@
 
     <!--SNACKBARS-->
     <string name="refreshing_markers">Обновляем скидки..</string>
+
+    <!--SETTINGS-->
+    <string name="please_turn_gps">Включите геолокацию</string>
+    <string name="gps_explanation">Для корректной работы нашего приложения, необходимо чтобы
+        Вы разрешили использование геоданных.
+    \n
+        \nДоступ к ним осуществляется за счет подключения к интернету, или через спутники GPS</string>
+    <string name="turn_on_gps">Разрешить геолокацию</string>
+    <string name="orange_round">Оранжевый круг</string>
+    <string name="blue_round">Синий круг</string>
+    <string name="blue_round_desc">Синий круг показывает ваше потенциальное местоположение
+        с учетом погрешностей измерительной системы</string>
+    <string name="orange_round_desc">Оранжевый круг показывает радиус действия программы.
+        Скидки показываются только внутри этого круга</string>
+    <string name="settings_about_sales">При несвоевременном обновлении базы данных,
+        текущие скидки, показываемые здесь, могут быть недействительны</string>
+    <string name="settings_footer_info">По всем вопросам обращайтесь по адресу help@trelico.com</string>
+    <string name="user_denied_gps">Если ничего не происходит- переустановите приложение
+        и при запуске разрешите сбор геоданных снова</string>
 
 </resources>

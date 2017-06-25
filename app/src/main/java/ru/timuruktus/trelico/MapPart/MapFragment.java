@@ -15,8 +15,8 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 
 import ru.timuruktus.trelico.MainPart.Interfaces.BaseMainPresenter;
-import ru.timuruktus.trelico.MapPart.Interafaces.BaseMapPresenter;
-import ru.timuruktus.trelico.MapPart.Interafaces.BaseMapView;
+import ru.timuruktus.trelico.MapPart.Interfaces.BaseMapPresenter;
+import ru.timuruktus.trelico.MapPart.Interfaces.BaseMapView;
 import ru.timuruktus.trelico.R;
 
 public class MapFragment extends Fragment implements BaseMapView {
@@ -48,11 +48,14 @@ public class MapFragment extends Fragment implements BaseMapView {
 
         mapView = (MapView) rootView.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.onResume(); // needed to get the map to display immediately
+//        mapView.onResume(); // needed to get the map to display immediately
         MapsInitializer.initialize(getActivity().getApplicationContext());
 
         refreshFAB = (FloatingActionButton) rootView.findViewById(R.id.refreshFAB);
         refreshFAB.setOnClickListener(v -> mapPresenter.onRefreshFABClick());
+
+        settingsFAB = (FloatingActionButton) rootView.findViewById(R.id.settingsFAB);
+        settingsFAB.setOnClickListener(v -> mapPresenter.onSettingsFABClick());
 
 
         mapView.getMapAsync(mapPresenter.onMapReady());

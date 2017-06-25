@@ -21,13 +21,13 @@ public class MarkerModel implements BaseMarkerModel {
     public void downloadAllMarkers(DownloadListener listener) {
         if(firstCall) {
             finalMarkers = new ArrayList<>();
+            listener.onStart();
         }
         firstCall = false;
         DataQueryBuilder queryBuilder = DataQueryBuilder.create();
         queryBuilder.setPageSize(100);
         queryBuilder.setOffset(offset);
         Backendless.Persistence.of(BaseMarker.class).find(queryBuilder, getDownloadListener(listener));
-        listener.onStart();
     }
 
     private AsyncCallback<List<BaseMarker>> getDownloadListener(DownloadListener listener){
@@ -69,7 +69,7 @@ public class MarkerModel implements BaseMarkerModel {
                 if(size > 0){
                     offset += tasks.size();
                     finalMarkers.addAll(tasks);
-                    downloadAllMarkers(listener);
+                    refreshAllMarkers(listener);
                 }else{
                     offset = 0;
                     BaseMarker.deleteAll(BaseMarker.class);
@@ -91,13 +91,14 @@ public class MarkerModel implements BaseMarkerModel {
     public void refreshAllMarkers(DownloadListener listener){
         if(firstCall) {
             finalMarkers = new ArrayList<>();
+            listener.onStart();
         }
         firstCall = false;
         DataQueryBuilder queryBuilder = DataQueryBuilder.create();
         queryBuilder.setPageSize(100);
         queryBuilder.setOffset(offset);
         Backendless.Persistence.of(BaseMarker.class).find(queryBuilder, getRefreshListener(listener));
-        listener.onStart();
+
     }
 
 }

@@ -1,4 +1,4 @@
-package ru.timuruktus.trelico.MapPart.Interafaces;
+package ru.timuruktus.trelico.MapPart.Interfaces;
 
 import android.location.Location;
 import android.location.LocationListener;

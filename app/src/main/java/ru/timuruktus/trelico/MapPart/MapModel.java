@@ -15,15 +15,16 @@ import com.backendless.exceptions.BackendlessFault;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.timuruktus.trelico.MapPart.Interafaces.BaseLocationTracker;
-import ru.timuruktus.trelico.MapPart.Interafaces.BaseMapModel;
-import ru.timuruktus.trelico.MapPart.Interafaces.BaseMapPresenter;
-import ru.timuruktus.trelico.MapPart.Interafaces.CustomLocationListener;
+import ru.timuruktus.trelico.MapPart.Interfaces.BaseLocationTracker;
+import ru.timuruktus.trelico.MapPart.Interfaces.BaseMapModel;
+import ru.timuruktus.trelico.MapPart.Interfaces.BaseMapPresenter;
+import ru.timuruktus.trelico.MapPart.Interfaces.CustomLocationListener;
 import ru.timuruktus.trelico.Markers.DownloadListener;
 import ru.timuruktus.trelico.POJO.BaseMarker;
 import ru.timuruktus.trelico.R;
 
 import static android.location.LocationProvider.AVAILABLE;
+import static ru.timuruktus.trelico.MapPart.LocationTracker.CIRCLE_SEARCH_RADIUS;
 
 class MapModel implements BaseMapModel {
 
@@ -85,6 +86,8 @@ class MapModel implements BaseMapModel {
 
             @Override
             public void onError(BackendlessFault fault) {
+                presenter.updateMap();
+                presenter.animateCameraToUser();
                 Log.d("mytag", "Download error. More info: " + fault.toString() +
                         " Details: " + fault.getDetail() +
                         " Message: " + fault.getMessage() + " Code: " + fault.getCode());
@@ -112,16 +115,16 @@ class MapModel implements BaseMapModel {
     public List<BaseMarker> getAllMarkerInRadius(double currentLat, double currentLng) throws NullPointerException{
         float[] results = new float[1];
         ArrayList<BaseMarker> finalMarkers = new ArrayList<>();
-        List<BaseMarker> tempMarkers = BaseMarker.
+        List<BaseMarker> nearMarkers = BaseMarker.
                 findWithQuery(BaseMarker.class,
                         "Select * from base_marker where lat between ? and ? and lng between ? and ?",
                         currentLat - 10 + "" , currentLat + 10 + "", currentLng - 10 + "", currentLng + 10 + "" );
 
-        for(BaseMarker marker : tempMarkers){
+        for(BaseMarker marker : nearMarkers){
             double lat = marker.getLat();
             double lng = marker.getLng();
             Location.distanceBetween(lat, lng, currentLat, currentLng, results);
-            if(results[0] < 2000){
+            if(results[0] < CIRCLE_SEARCH_RADIUS){
                 finalMarkers.add(marker);
             }
         }
