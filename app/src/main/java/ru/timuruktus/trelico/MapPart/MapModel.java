@@ -80,7 +80,7 @@ class MapModel implements BaseMapModel {
 
             @Override
             public void onComplete() {
-                presenter.updateMap();
+                presenter.refreshMarkers(false);
                 presenter.animateCameraToUser();
             }
 

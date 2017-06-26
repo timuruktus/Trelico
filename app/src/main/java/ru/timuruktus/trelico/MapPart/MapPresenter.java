@@ -147,8 +147,13 @@ class MapPresenter implements BaseMapPresenter {
 
     @Override
     public void refreshMarkers() throws NullPointerException {
+        refreshMarkers(true);
+    }
+
+    @Override
+    public void refreshMarkers(boolean softClear) throws NullPointerException {
         ArrayList<BaseMarker> markers = (ArrayList<BaseMarker>) model.getAllMarkerInRadius(locationTracker);
-        clearAllShowedMarkers();
+        clearAllShowedMarkers(softClear);
         for(BaseMarker marker : markers){
             Marker showedMarker = MarkerBuilder.showMarker(googleMap, marker);
             showedMarkers.add(showedMarker);
@@ -167,10 +172,12 @@ class MapPresenter implements BaseMapPresenter {
         }
     }
 
-    private void clearAllShowedMarkers(){
+    private void clearAllShowedMarkers(boolean softClear){
         if(showedMarkers != null && showedMarkers.size() != 0){
             for(Marker marker : showedMarkers){
-                marker.remove();
+                if(!marker.isInfoWindowShown() || !softClear) {
+                    marker.remove();
+                }
             }
         }
     }
