@@ -80,7 +80,7 @@ class MapModel implements BaseMapModel {
 
             @Override
             public void onComplete() {
-                presenter.refreshMarkers(false);
+                presenter.refreshMarkersOnMap(false);
                 presenter.animateCameraToUser();
             }
 
@@ -118,7 +118,7 @@ class MapModel implements BaseMapModel {
         List<BaseMarker> nearMarkers = BaseMarker.
                 findWithQuery(BaseMarker.class,
                         "Select * from base_marker where lat between ? and ? and lng between ? and ?",
-                        currentLat - 10 + "" , currentLat + 10 + "", currentLng - 10 + "", currentLng + 10 + "" );
+                        currentLat - 3 + "" , currentLat + 3 + "", currentLng - 3 + "", currentLng + 3 + "" );
 
         for(BaseMarker marker : nearMarkers){
             double lat = marker.getLat();

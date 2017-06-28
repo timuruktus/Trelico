@@ -7,9 +7,9 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Handler;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -18,6 +18,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 
 import java.util.ArrayList;
@@ -79,6 +80,7 @@ class MapPresenter implements BaseMapPresenter {
     public OnMapReadyCallback onMapReady() {
         return map -> {
             googleMap = map;
+            setMapStyle(R.raw.map_style_2);
             CustomInfoWindowAdapter markerAdapter = new CustomInfoWindowAdapter(view.getActivity());
             googleMap.setInfoWindowAdapter(markerAdapter);
             int permissionCheck = ContextCompat.checkSelfPermission(view.getAppContext(),
@@ -93,6 +95,20 @@ class MapPresenter implements BaseMapPresenter {
                         MY_PERMISSIONS_REQUEST_FINE_LOCATION);
             }
         };
+    }
+
+    private void setMapStyle(int rawId){
+        try {
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            view.getAppContext(), rawId));
+            if (!success) {
+                Log.e("mytag", "Style parsing failed.");
+            }
+        }catch (Exception ex){
+            Log.d("mytag", "Error while setting map style. Info: " + ex.getMessage() );
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -146,12 +162,12 @@ class MapPresenter implements BaseMapPresenter {
     }
 
     @Override
-    public void refreshMarkers() throws NullPointerException {
-        refreshMarkers(true);
+    public void refreshMarkersOnMap() throws NullPointerException {
+        refreshMarkersOnMap(true);
     }
 
     @Override
-    public void refreshMarkers(boolean softClear) throws NullPointerException {
+    public void refreshMarkersOnMap(boolean softClear) throws NullPointerException {
         ArrayList<BaseMarker> markers = (ArrayList<BaseMarker>) model.getAllMarkerInRadius(locationTracker);
         clearAllShowedMarkers(softClear);
         for(BaseMarker marker : markers){
@@ -163,7 +179,7 @@ class MapPresenter implements BaseMapPresenter {
     @Override
     public void updateMap(){
         try {
-            refreshMarkers();
+            refreshMarkersOnMap();
             animateCameraToUser();
         }catch(NullPointerException ex){
             Handler handler = new Handler();

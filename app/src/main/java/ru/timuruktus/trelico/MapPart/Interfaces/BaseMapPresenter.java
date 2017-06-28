@@ -18,6 +18,6 @@ public interface BaseMapPresenter {
     void updateMap();
     Context askForContext();
     void animateCameraToUser();
-    void refreshMarkers();
-    void refreshMarkers(boolean softClear);
+    void refreshMarkersOnMap();
+    void refreshMarkersOnMap(boolean softClear);
 }

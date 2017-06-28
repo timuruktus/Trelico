@@ -81,7 +81,7 @@ public class LocationTracker implements BaseLocationTracker{
                             if (location != null) {
                                 LocationTracker.this.location = location;
                                 LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
-                                mapPresenter.refreshMarkers();
+                                mapPresenter.refreshMarkersOnMap();
                                 if(circle == null) {
                                     CircleOptions circleOptions = new CircleOptions()
                                             .center(currentPosition)
